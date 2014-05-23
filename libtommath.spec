@@ -3,6 +3,7 @@
 %define devname %mklibname tommath -d
 
 Summary:	Portable number theoretic multiple-precision integer library
+
 Name:		libtommath
 Version:	0.42.0
 Release:	6
@@ -29,6 +30,7 @@ routines that build out of the box without configuration.
 
 %package -n	%{libname}
 Summary:	Portable number theoretic multiple-precision integer library
+
 Group:		System/Libraries
 
 %description -n	%{libname}
@@ -39,6 +41,7 @@ routines that build out of the box without configuration.
 
 %package -n	%{devname}
 Summary:	Development files for %{name}
+
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	tommath-devel = %{version}-%{release}
@@ -72,10 +75,4 @@ export INSTALL_GROUP=$(id -gn)
 %dir %{_includedir}/tommath
 %{_includedir}/tommath/*
 %{_libdir}/libtommath.so
-
-%changelog
-* Sat Dec 07 2013 Bernhard Rosenkraenzer <bero@bero.eu> 0.42.0-6
-+ Revision: a969be4
-- MassBuild#289: Increase release tag
-
 
