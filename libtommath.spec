@@ -7,7 +7,7 @@ Summary:	Portable number theoretic multiple-precision integer library
 
 Name:		libtommath
 Version:	0.42.0
-Release:	8
+Release:	9
 Group:		System/Libraries
 License:	Public Domain
 Url:		http://libtom.org
@@ -16,12 +16,8 @@ Source1:	%{url}/files/ltm-%{version}.tar.bz2.sig
 Source100:	libtommath.rpmlintrc
 Patch0:		libtommath-makefile.patch
 Patch1:		libtommath-0.42.0-libtool-tag-fix.patch
-BuildRequires:	ghostscript
-BuildRequires:	ghostscript-dvipdf
 BuildRequires:	libtool
-BuildRequires:	libtiff-progs
-BuildRequires:	tetex-dvips
-BuildRequires:	tetex-latex
+
 
 %description
 A free open source portable number theoretic multiple-precision integer
@@ -31,8 +27,6 @@ routines that build out of the box without configuration.
 
 %package -n	%{libname}
 Summary:	Portable number theoretic multiple-precision integer library
-
-
 Group:		System/Libraries
 
 %description -n	%{libname}
@@ -61,7 +55,6 @@ find -name \*.c -o -name \*.h|xargs chmod 644
 %build
 export CFLAGS="%{optflags} -Ofast -funroll-loops"
 %make LIBPATH=%{_libdir} -f makefile.shared 
-%make -f makefile poster manual docs
 
 %install
 export INSTALL_USER=$(id -un)
@@ -74,7 +67,7 @@ export INSTALL_GROUP=$(id -gn)
 %{_libdir}/libtommath.so.%{major}*
 
 %files -n %{devname}
-%doc bn.pdf poster.pdf tommath.pdf
+%doc LICENSE
 %dir %{_includedir}/tommath
 %{_includedir}/tommath/*
 %{_libdir}/libtommath.so
