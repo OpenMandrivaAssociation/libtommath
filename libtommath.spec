@@ -1,4 +1,4 @@
-%define major	0
+%define major	1
 %define libname %mklibname tommath %{major}
 %define devname %mklibname tommath -d
 
@@ -6,16 +6,13 @@ Summary:	Portable number theoretic multiple-precision integer library
 
 
 Name:		libtommath
-Version:	0.42.0
-Release:	11
+Version:	1.0
+Release:	1
 Group:		System/Libraries
 License:	Public Domain
-Url:		http://libtom.org
-Source0:	%{url}/files/ltm-%{version}.tar.bz2
-Source1:	%{url}/files/ltm-%{version}.tar.bz2.sig
+Url:		https://github.com/libtom/libtommath
+Source0:	https://github.com/libtom/libtommath/releases/download/v1.0/ltm-%{version}.tar.xz
 Source100:	libtommath.rpmlintrc
-Patch0:		libtommath-makefile.patch
-Patch1:		libtommath-0.42.0-libtool-tag-fix.patch
 BuildRequires:	libtool
 
 
@@ -50,11 +47,10 @@ developing applications that use %{name}.
 %prep
 %setup -q
 %apply_patches
-find -name \*.c -o -name \*.h|xargs chmod 644
 
 %build
 export CFLAGS="%{optflags} -Ofast -funroll-loops"
-%make LIBPATH=%{_libdir} -f makefile.shared 
+%make LDFLAGS="%{ldflags}" CC=%{__cc} LIBPATH=%{_libdir} -f makefile.shared
 
 %install
 export INSTALL_USER=$(id -un)
@@ -71,4 +67,3 @@ export INSTALL_GROUP=$(id -gn)
 %dir %{_includedir}/tommath
 %{_includedir}/tommath/*
 %{_libdir}/libtommath.so
-
