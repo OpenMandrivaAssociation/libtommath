@@ -1,13 +1,11 @@
-%define major	1
+%define major 1
 %define libname %mklibname tommath %{major}
 %define devname %mklibname tommath -d
 
 Summary:	Portable number theoretic multiple-precision integer library
-
-
 Name:		libtommath
-Version:	1.0
-Release:	2
+Version:	1.0.1
+Release:	1
 Group:		System/Libraries
 License:	Public Domain
 Url:		https://github.com/libtom/libtommath
@@ -15,30 +13,27 @@ Source0:	https://github.com/libtom/libtommath/releases/download/v1.0/ltm-%{versi
 Source100:	libtommath.rpmlintrc
 BuildRequires:	libtool
 
-
 %description
 A free open source portable number theoretic multiple-precision integer
 library written entirely in C. (phew!). The library is designed to
 provide a simple to work with API that provides fairly efficient
 routines that build out of the box without configuration.
 
-%package -n	%{libname}
+%package -n %{libname}
 Summary:	Portable number theoretic multiple-precision integer library
 Group:		System/Libraries
 
-%description -n	%{libname}
+%description -n %{libname}
 A free open source portable number theoretic multiple-precision integer
 library written entirely in C. (phew!). The library is designed to
 provide a simple to work with API that provides fairly efficient
 routines that build out of the box without configuration.
 
-%package -n	%{devname}
+%package -n %{devname}
 Summary:	Development files for %{name}
-
-
 Group:		Development/C
-Requires:	%{libname} = %{version}-%{release}
-Provides:	tommath-devel = %{version}-%{release}
+Requires:	%{libname} = %{EVRD}
+Provides:	tommath-devel = %{EVRD}
 
 %description -n %{devname}
 The %{devname} package contains libraries and header files for
@@ -49,6 +44,7 @@ developing applications that use %{name}.
 %apply_patches
 
 %build
+%setup_compile_flags
 export CFLAGS="%{optflags} -Ofast -funroll-loops"
 %make LDFLAGS="%{ldflags}" CC=%{__cc} LIBPATH=%{_libdir} -f makefile.shared
 
@@ -59,7 +55,6 @@ export INSTALL_GROUP=$(id -gn)
 %makeinstall_std INCPATH=%{_includedir}/ LIBPATH=%{_libdir} -f makefile.shared
 
 %files -n %{libname}
-%doc LICENSE
 %{_libdir}/libtommath.so.%{major}*
 
 %files -n %{devname}
