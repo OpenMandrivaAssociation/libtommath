@@ -61,3 +61,4 @@ export INSTALL_GROUP=$(id -gn)
 %doc LICENSE
 %{_includedir}/*.h
 %{_libdir}/libtommath.so
+%{_libdir}/pkgconfig/libtommath.pc
