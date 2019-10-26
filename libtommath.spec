@@ -4,7 +4,7 @@
 
 Summary:	Portable number theoretic multiple-precision integer library
 Name:		libtommath
-Version:	1.1.0
+Version:	1.2.0
 Release:	1
 Group:		System/Libraries
 License:	Public Domain
