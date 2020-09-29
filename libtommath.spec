@@ -5,7 +5,7 @@
 Summary:	Portable number theoretic multiple-precision integer library
 Name:		libtommath
 Version:	1.2.0
-Release:	1
+Release:	2
 Group:		System/Libraries
 License:	Public Domain
 Url:		https://github.com/libtom/libtommath
@@ -40,13 +40,12 @@ The %{devname} package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 %build
-%setup_compile_flags
+%set_build_flags
 export CFLAGS="%{optflags} -Ofast -funroll-loops"
-%make_build LDFLAGS="%{ldflags}" CC=%{__cc} LIBPATH=%{_libdir} -f makefile.shared
+%make_build LDFLAGS="%{build_ldflags}" CC=%{__cc} LIBPATH=%{_libdir} -f makefile.shared
 
 %install
 export INSTALL_USER=$(id -un)
