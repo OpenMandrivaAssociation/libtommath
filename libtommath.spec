@@ -2,6 +2,8 @@
 %define libname %mklibname tommath %{major}
 %define devname %mklibname tommath -d
 
+%define debug_package %{nil}
+
 Summary:	Portable number theoretic multiple-precision integer library
 Name:		libtommath
 Version:	1.2.0
@@ -41,6 +43,15 @@ developing applications that use %{name}.
 
 %prep
 %autosetup -p1
+
+# Fix permissions on installed library
+sed -i -e 's/644 $(LIBNAME)/755 $(LIBNAME)/g' makefile.shared
+	
+# Fix pkgconfig path
+sed -i \
+    -e 's|^prefix=.*|prefix=%{_prefix}|g' \
+    -e 's|^libdir=.*|libdir=%{_libdir}|g' \
+    %{name}.pc.in
 
 %build
 %set_build_flags
