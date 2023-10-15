@@ -6,8 +6,8 @@
 
 Summary:	Portable number theoretic multiple-precision integer library
 Name:		libtommath
-Version:	1.2.0
-Release:	3
+Version:	1.2.1
+Release:	1
 Group:		System/Libraries
 License:	Public Domain
 Url:		https://github.com/libtom/libtommath
