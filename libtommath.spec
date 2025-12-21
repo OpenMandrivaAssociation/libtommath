@@ -13,6 +13,7 @@ License:	Public Domain
 Url:		https://github.com/libtom/libtommath
 Source0:	https://github.com/libtom/libtommath/archive/v%{version}.tar.gz
 Source100:	libtommath.rpmlintrc
+BuildRequires:	make
 BuildRequires:	libtool
 
 %description
